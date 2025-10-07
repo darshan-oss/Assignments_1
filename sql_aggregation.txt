@@ -1,0 +1,74 @@
+
+1- write a query to get region wise count of return orders
+
+select *, count(return_product) as total_count_of_returned_products,
+from orders 
+where ship_mode = 'returned'
+group by region
+order by count(return_products) desc
+
+2- write a query to get category wise sales of orders that were not returned
+
+select count(sale) as sale of orders
+from orders
+group by category
+having ship_mode = 'Delivered'
+
+
+3- write a query to print dep name and average salary of employees in that dep .
+
+select dep_name, AVG(salary) as EmpAvgSalary
+from orders
+group by dep_name
+
+
+4- write a query to print dep names where none of the emplyees have same salary.
+
+select e1.dep_name
+from employee e1
+left join employee e2
+on e1.emmployee_id = e2.emmployee_id 
+where e1.salary != e2.salary
+
+
+5- write a query to print sub categories where we have all 3 kinds of returns (others,bad quality,wrong items)
+
+select subcategories, count(*) as subcategory
+from orders
+where subcategories in ('others','bad quality','wrong items')
+group subcategories
+
+
+6- write a query to find cities where not even a single order was returned.
+
+
+
+select city, count(*) as unreturn_prod
+from orders
+where return_priduct < 1 
+group by cities
+
+
+7- write a query to find top 3 subcategories by sales of returned orders in east region
+
+select top 3 subcategories, count(*) as returned_prod
+from orders
+where region = 'east'
+group by subcategories
+order by return_priduct desc
+
+8- write a query to print dep name for which there is no employee
+
+select dep_name
+from employee
+where employee id is null
+group gy dep_name
+
+
+9- write a query to print employees name for dep id is not avaiable in dept table
+
+select e1.emp_name
+from emplyee e1 
+left join dept d1
+on e1.employeeid = d1.deptid
+where d1.deptid is Null
