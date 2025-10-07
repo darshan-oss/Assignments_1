@@ -72,3 +72,5 @@ from emplyee e1
 left join dept d1
 on e1.employeeid = d1.deptid
 where d1.deptid is Null
+
+sql
